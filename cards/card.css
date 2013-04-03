@@ -8,7 +8,9 @@ border-radius: 15px;
 background-image:url('cardboard_flat.png');
 }
 
-#head {}
+#head {
+height:50px;
+}
 
 body {
 font-family: 'Gabriela', serif;
@@ -16,31 +18,57 @@ font-size:100%;
 }
 
 h1 {
-font-size:2.0em;
+font-size:1.3em;
 font-weight:150;
+margin-left:30%;
+margin-top:5px;
 }
 
 h2 {
-font-size:1.575em;
+font-size:1.0em;
 font-weight:130;
+margin-left:25%;
+margin-top:-15px;
 }
-
 
 #image {
-
+top:-50px;
+border:1px dotted blue;
 }
 
-#crest {}
+#image  img{
+width:300px;
+height:200px;
+z-index:0;
+}
+
+#crest {
+position:absolute;
+top:180px;
+left:220px;
+border:1px dotted green;
+}
+
+#crest  img{
+z-index:1;
+width:80px;
+height:80px;
+}
 
 #table_container {
 border: 1px dotted red;
 }
 
-table {}
+table {
+font-size:0.75em;
+}
 
 th {}
 
-tr, td {}
+tr, td {
+text-align:center;
+width:150px;
+}
 
 #footer {
 border: 1px dotted red;
