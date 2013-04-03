@@ -1,0 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=Gabriela);
+
+#card_container {
+height:420px;
+width:300px;
+border: 2px solid black;
+border-radius: 15px;
+background-image:url('cardboard_flat.png');
+}
+
+#head {}
+
+body {
+font-family: 'Gabriela', serif;
+font-size:100%;
+}
+
+h1 {
+font-size:2.0em;
+font-weight:150;
+}
+
+h2 {
+font-size:1.575em;
+font-weight:130;
+}
+
+
+#image {
+
+}
+
+#crest {}
+
+#table_container {
+border: 1px dotted red;
+}
+
+table {}
+
+th {}
+
+tr, td {}
+
+#footer {
+border: 1px dotted red;
+}
