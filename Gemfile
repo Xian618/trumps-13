@@ -25,7 +25,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# jQuery & Styling
 gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 4.0.2'
+gem 'jquery_mobile_rails'
+gem 'bootstrap-sass'
 
 # Queue & Pusher
 gem 'iron_mq'		# hosted message queue

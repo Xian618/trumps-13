@@ -1,9 +1,10 @@
-<h1>Trumps</h1>
-<h2 id="player_count">Players: 1</h2>
-<%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :class => 'btn', :id => 'button' %>
-<br />
-<div id="console">
+<div class="hero-unit">
+	<h1>Trumps</h1>
+	<h4 id="player_count">Players: 1</h4>
+	<%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :class => 'btn btn-primary btn-warning', :id => 'button' %>
 </div>
+
+<div id="console" class="well"></div>
 
 <script type="text/javascript">
 	var pusher = new Pusher('d2b29a599cc5f3823b3b');
@@ -18,7 +19,7 @@
 	  	}
     });
     channel.bind('switch', function(data) {
-    	$('#button').toggleClass('red');	
+    	$('#button').toggleClass('btn-warning');	
     });
     channel.bind('pusher:member_added', function() {
     	set_players();

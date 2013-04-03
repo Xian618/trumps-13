@@ -1,6 +1,5 @@
-<h1>Lobby</h1>
-<% if flash[:error] %>
-  <div class="alert alert-error"><%= flash[:error] %></div>
-<% end %>
-<p>Join the queue.</p>
-<%= button_to "Queue", :action => "queue" %>
+<div class="hero-unit">
+	<h1>Lobby</h1>
+	<p>Join the queue.</p>
+	<%= button_to "Queue", {:action => "queue"}, :class => "btn btn-primary" %>
+</div>
