@@ -8,7 +8,12 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    if room_not_full(params)
+      @game = Game.find(params[:id])
+    else
+      flash[:error] = "You are not a player in that game."
+      redirect_to root_path
+    end
   end
 
   def populate
@@ -51,6 +56,11 @@ private
     dataset = Spreadsheet.open(file)
     
     # use dataset here 
+  end
+
+  def room_not_full(params)
+    room_info = Pusher.get('/channels/presence-'+params[:id], {info: 'user_count'})
+    return room_info[:user_count] < 2
   end
 
   def user_is_in_game(params)

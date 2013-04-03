@@ -12,12 +12,7 @@ class LobbiesController < ApplicationController
         queue = ironmq.queue("open_games")
         size = queue.size
         if (size > 0)
-            message = queue.get
-            game_to_join = message.body
-            message.delete
-            Rails.logger.info(game_to_join)
-            #join_game(game_to_join)
-            #render :text => game_to_join
+            game_to_join = get_game_to_join(queue)
             @game = Game.find(game_to_join)
             @game.player2 = session[:player]
             redirect_to @game
@@ -33,5 +28,12 @@ class LobbiesController < ApplicationController
         game = Game.create({:game_id => SecureRandom.uuid, :player1 => player_id}, :without_protection => true)
         return game
     end
-    
+
+    def get_game_to_join(queue)
+        message = queue.get
+        game_to_join = message.body
+        queue.delete(message.id)
+        return game_to_join
+    end
+  
 end
