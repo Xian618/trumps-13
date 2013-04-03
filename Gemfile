@@ -22,6 +22,10 @@ end
 
 gem 'jquery-rails'
 
+# Queue & Pusher
+gem 'iron_mq'		# hosted message queue
+gem 'pusher'	# hosted push messages
+
 # XLS Parsing
 gem 'ruby-ole'
 gem 'spreadsheet'

@@ -59,4 +59,9 @@ module Londontrumps
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
+
+  Pusher.app_id = '40766'
+  Pusher.key = 'd2b29a599cc5f3823b3b'
+  Pusher.secret = 'f4eb0dfbeec907b8f311'
+
 end

@@ -1,4 +1,4 @@
-class GameController < ApplicationController
+class GamesController < ApplicationController
   require 'json'
   require 'net/http'
   require 'spreadsheet'
@@ -8,13 +8,22 @@ class GameController < ApplicationController
   end
 
   def show
-    render :text => "show method"
+    @game = Game.find(params[:id])
   end
 
   def populate
     url = getdataseturl()
     file = savedataset(url)
     readdataset(file)
+  end
+
+  def switch
+    if user_is_in_game(params)
+      Pusher.trigger('presence-' + params[:id], 'switch', {some: 'data'})
+      render :text => "success", :status => '200'
+    else
+      render :text => "Forbidden", :status => '403'
+    end
   end
 
 private
@@ -42,6 +51,17 @@ private
     dataset = Spreadsheet.open(file)
     
     # use dataset here 
+  end
+
+  def user_is_in_game(params)
+    found = false
+    users = Pusher.get('/channels/presence-'+params[:id]+'/users')[:users]
+    users.each { |user_in_room|
+      if user_in_room.value?(session[:player])
+        found = true
+      end
+    }
+    return found
   end
 end
 

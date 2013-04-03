@@ -1,11 +1,13 @@
 Londontrumps::Application.routes.draw do
-  get "game/index"
-
   # Front page
-  root :to => 'game#index'
+  root :to => 'lobbies#index'
+
+  match 'games/switch' => 'games#switch'
+  match 'pusher/auth' => 'pusher#auth'
 
   # Resourcces
-  resource :game
+  resources :games
+  resources :lobbies
 
   # Route everything else by url
   match ':controller/:action'
