@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  deck: 
+  name: MyString
+  subtitle: MyString
+  good_stats: 
+  bad_stats: 
+  image_prefix: MyString
+  interesting_facts: 
+
+two:
+  deck: 
+  name: MyString
+  subtitle: MyString
+  good_stats: 
+  bad_stats: 
+  image_prefix: MyString
+  interesting_facts: 
