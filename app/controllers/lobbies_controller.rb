@@ -1,7 +1,6 @@
 class LobbiesController < ApplicationController
 
     def index
-
     end
 
     def queue
