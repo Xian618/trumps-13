@@ -11,14 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403002904) do
+ActiveRecord::Schema.define(:version => 20130404234032) do
 
-  create_table "games", :force => true do |t|
-    t.string   "game_id"
-    t.string   "player1"
-    t.string   "player2"
+  create_table "cards", :force => true do |t|
+    t.integer  "deck_id"
+    t.string   "name"
+    t.string   "subtitle"
+    t.string   "good_stats"
+    t.string   "bad_stats"
+    t.string   "image_prefix"
+    t.string   "interesting_facts"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"
+
+  create_table "decks", :force => true do |t|
+    t.integer  "player_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "decks", ["player_id"], :name => "index_decks_on_player_id"
+
+  create_table "games", :force => true do |t|
+    t.integer  "stat_type"
+    t.integer  "whos_turn"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "game_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "players", ["game_id"], :name => "index_players_on_game_id"
 
 end

@@ -4,16 +4,16 @@ one:
   deck: 
   name: MyString
   subtitle: MyString
-  good_stats: 
-  bad_stats: 
+  good_stats: MyString
+  bad_stats: MyString
   image_prefix: MyString
-  interesting_facts: 
+  interesting_facts: MyString
 
 two:
   deck: 
   name: MyString
   subtitle: MyString
-  good_stats: 
-  bad_stats: 
+  good_stats: MyString
+  bad_stats: MyString
   image_prefix: MyString
-  interesting_facts: 
+  interesting_facts: MyString
