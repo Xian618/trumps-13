@@ -1,19 +1,22 @@
 <% title "Game" %>
+<div align="center">
+    <h1>Trumps</h1>
+    <h4 id="player_count">Players: 1</h4>
+    <div id="console" class="well"></div>
+    <%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :id => 'button', "data-role" => "button", "data-theme" => "b" %>
 
-<h1>Trumps</h1>
-<h4 id="player_count">Players: 1</h4>
-<div id="console" class="well"></div>
-<%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :id => 'button', "data-role" => "button", "data-theme" => "b" %>
 
-
-<div class="ui-grid-a">
-    <div class="ui-block-a">
-        <h4>Player 1</h4>
-        <%= render 'games/card' %>
-    </div>
-    <div class="ui-block-b">
-        <h4>Player 2</h4>
-        <%= render 'games/card' %>
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <h4>Player 1</h4>
+                <%= render 'games/card' %>
+            </div>
+            <div class="span6 hidden-phone">
+                <h4>Player 2</h4>
+                <%= render 'games/card' %>
+            </div>
+        </div>
     </div>
 </div>
 
