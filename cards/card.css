@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Gabriela);
 
-#card_container {
+.card_container {
 height:420px;
 width:300px;
 border: 2px solid black;

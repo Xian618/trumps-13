@@ -7,20 +7,18 @@
 			-webkit-perspective: 1000;
 			-moz-perspective: 1000;
 			perspective: 1000;
-
-			border: 1px solid #ccc;
 		}
 
 			
-			.flip-container:hover .flipper, .flip-container.hover .flipper {
-				-webkit-transform: rotateY(180deg);
-				-moz-transform: rotateY(180deg);
-				transform: rotateY(180deg);
-			}
+        .flip-container:hover .flipper, .flip-container.hover .flipper {
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
 
 		.flip-container, .front, .back {
-			width: 320px;
-			height: 427px;
+			height:420px;
+            width:300px;
 		}
 
 		.flipper {
@@ -47,7 +45,6 @@
 		}
 
 		.front {
-			background: lightgreen;
 			z-index: 2;
 		}
 
@@ -62,7 +59,6 @@
 			font-size: 2em;
 			display: inline-block;
 			background: rgba(33, 33, 33, 0.9);
-			color: #f8f8f8;
 			font-family: Courier;
 			padding: 5px 10px;
 			border-radius: 5px;
@@ -107,15 +103,63 @@
 			padding: 0 20px;
 		}
 	</style>
+    <link rel="stylesheet" type="text/css" href="card.css" /> 
 </head>
 <body>
 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
     <div class="flipper">
-        <div class="front">
-            front 
+        <div class="front card_container">
+            <div id="head">
+                <h1>Card Title<h1>
+                <h2>Card Second Title<h2>
+            </div>
+            
+            <div id="image"><img src="Hammersmith_and_Fulham_image.jpg"></div>
+            <div id="crest"><img src="Hammersmith_and_Fulham_crest.png"></div>
+            
+            <div id="table_container">
+            <table>
+                <tr>
+                <th>Table Heading 1</th>
+                <th>Table Heading 2</th>
+                </tr>
+            
+                <tr>
+                <td>Row 1 Col 1</td>
+                <td>Row 1 Col 2</td>
+                </tr>
+                
+                <tr>
+                <td>Row 2 Col 1</td>
+                <td>Row 2 Col 2</td>
+                </tr>
+
+                <tr>
+                <td>Row 3 Col 1</td>
+                <td>Rol 3 Col 2</td>
+                </tr>
+
+                <tr>
+                <td>Row 4 Col 1</td>
+                <td>Row 4 Col 2</td>
+                </tr>
+                
+                <tr>
+                <td>Row 5 Col 1</td>
+                <td>Row 5 Col 2</td>
+                </tr>
+                
+                
+            </table>	
+            </div>
+
+            <div id="footer">Some footer text goes here</div>
+
         </div>
-        <div class="back">
-            back
+        <div class="back card_container">
+            <div id="head">
+                <h1>Card Back<h1>
+            </div>
         </div>
     </div>
 </div>
