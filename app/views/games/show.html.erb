@@ -1,39 +1,68 @@
-<div class="hero-unit">
-	<h1>Trumps</h1>
-	<h4 id="player_count">Players: 1</h4>
-	<%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :class => 'btn btn-primary btn-warning', :id => 'button' %>
+<% title "Game" %>
+
+<h1>Trumps</h1>
+<h4 id="player_count">Players: 1</h4>
+<div id="console" class="well"></div>
+<%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true, :id => 'button', "data-role" => "button", "data-theme" => "b" %>
+
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <h4>Player 1</h4>
+        <%= render 'games/card' %>
+    </div>
+    <div class="ui-block-b">
+        <h4>Player 2</h4>
+        <%= render 'games/card' %>
+    </div>
 </div>
 
-<div id="console" class="well"></div>
+<% content_for :footer do %>
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="a.html" data-icon="grid">Cards</a></li>
+                <li><a href="b.html" data-icon="star">Acheviements</a></li>
+                <li><a href="c.html" data-icon="info">Learn More</a></li>
+            </ul>
+        </div>
+    </div> 
+<% end %> 
 
 <script type="text/javascript">
-	var pusher = new Pusher('d2b29a599cc5f3823b3b');
-	var channel = pusher.subscribe('<%= "presence-" + @game.id.to_s %>');
+    var pusher = new Pusher('d2b29a599cc5f3823b3b');
+    var channel = pusher.subscribe('<%= "presence-" + @game.id.to_s %>');
 
-	channel.bind('pusher:subscription_succeeded', function() {
-		if (channel.members.count > 1) {
-	      	console('Game on!');
-	      	set_players();
-	  	} else {
-	  		console('Waiting for player 2...');
-	  	}
+    channel.bind('pusher:subscription_succeeded', function() {
+        if (channel.members.count > 1) {
+            console('Game on!');
+            set_players();
+        } else {
+            console('Waiting for player 2...');
+        }
     });
     channel.bind('switch', function(data) {
-    	$('#button').toggleClass('btn-warning');	
+        var switchButton = $('#button');
+        if (switchButton.attr("data-theme") == 'b') {
+            switchButton.buttonMarkup({theme: 'e'});    
+        } else {
+            switchButton.buttonMarkup({theme: 'b'});
+        }
+            
     });
     channel.bind('pusher:member_added', function() {
-    	set_players();
-    	console('Game on!');
+        set_players();
+        console('Game on!');
     });
 
 
     // Helper Functions    
     function set_players() {
-    	$('#player_count').text("Players: " + channel.members.count);	
+        $('#player_count').text("Players: " + channel.members.count);   
     }
 
     function console(string) {
-    	$('#console').text(string);
+        $('#console').text(string);
     }
     
-</script>
+</script> 

@@ -4,6 +4,7 @@ Londontrumps::Application.routes.draw do
 
   match 'games/switch' => 'games#switch'
   match 'pusher/auth' => 'pusher#auth'
+  match 'lobbies/queue' => 'lobbies#queue'
 
   # Resourcces
   resources :games
