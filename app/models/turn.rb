@@ -27,5 +27,5 @@ class Turn
 
   def send_to_player(game_id, player_id)
     Pusher.trigger('presence-'+game_id+'-'+player_id, 'turn', to_hash())
-  def
+  end
 end
