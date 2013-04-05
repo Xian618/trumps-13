@@ -1,4 +1,4 @@
-module AttributeHash
+module AttributeHashHelper
   def to_hash
     hash = {}; 
     self.instance_variables.each { |k|
