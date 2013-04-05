@@ -10,18 +10,7 @@
                 <%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true,
                  :id => 'button', "data-role" => "button", "data-theme" => "b" %>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="span6">
-                            <h4><%= @game.players[0] %></h4>
-                            <%= render 'games/card' %>
-                        </div>
-                        <div class="span6 hidden-phone">
-                            <h4><%= @game.players[1] %></h4>
-                            <%= render 'games/card' %>
-                        </div>
-                    </div>
-                </div>
+                <div class="game-window"></div>
             </div>
         </div>
     </div>
@@ -41,7 +30,7 @@
 
 <script type="text/javascript">
     var pusher = new Pusher('d2b29a599cc5f3823b3b');
-    var channel = pusher.subscribe('<%= "presence-" + @game.id.to_s %>');
+    var channel = pusher.subscribe('<%= "presence-" + @game.id.to_s + '-' + session[:player_id] %>');
 
     channel.bind('pusher:subscription_succeeded', function() {
         if (channel.members.count > 1) {
@@ -64,7 +53,17 @@
         set_players();
         console('Game on!');
     });
-
+    
+    channel.bind('turn', function(data) {
+        var player_numcards = data.player_numcards;
+        var opponent_numcards = data.opponent_numcards;
+        var player_turn = data.player_turn;
+        var card_name = data.card_name;
+        var card_subtitle = data.card_subtitle;
+        var card_image_prefix = data.card_image_prefix;
+        var card_stat_names = data.card_stat_names;
+        var card_stats = data.card_stats;
+    });
 
     // Helper Functions    
     function set_players() {
