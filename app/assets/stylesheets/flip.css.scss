@@ -5,17 +5,19 @@
 	perspective: 1000;
 }
 
-	
+/*	
 .flip-container:hover .flipper, .flip-container.hover .flipper {
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
+*/
 
 .flip-container, .front, .back {
 	height:420px;
     width:300px;
 }
+
 
 .flipper {
 	-webkit-transition: 0.6s;

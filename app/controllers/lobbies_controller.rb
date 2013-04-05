@@ -4,27 +4,28 @@ class LobbiesController < ApplicationController
     end
 
     def queue
-        session[:player] = SecureRandom.uuid
-
         ironmq = IronMQ::Client.new(:token => 'ZwTWFN2PsYBooqLWwrVxx39EYoI', :project_id => '515b70212267d83c8f00708c')
         
         queue = ironmq.queue("open_games")
         size = queue.size
         if (size > 0)
+            join_game
             game_to_join = get_game_to_join(queue)
             @game = Game.find(game_to_join)
-            @game.player2 = session[:player]
+            player = Players.new({:name => params(:name)})
+            @game.players << player
             redirect_to @game
         else
-            @game = make_new_game(session[:player])
+            @game = make_new_game_for_player(params(:name))
             queue.post(@game.id.to_s)
             redirect_to @game
         end
     end
     
     private
-    def make_new_game(player_id)
-        game = Game.create({:game_id => SecureRandom.uuid, :player1 => player_id}, :without_protection => true)
+    def make_new_game_for_player(name)
+        game = Game.create()
+        player = Players.new({:name => name})
         return game
     end
 

@@ -1,20 +1,3 @@
-<script>
- $(function() {
-    // Create a new client to connect to Faye
-    var client = new Faye.Client('http://localhost:1337/faye');
- 
-    // Handle form submissions and post messages to faye
-    $('#new_message_form').submit(function(){
-      // Publish the message to the public channel
-      client.publish('/messages/public', {
-        player: '<%= session[:player] %>',
-      });
-  
-      // Don't actually submit the form, otherwise the page will refresh.
-      return false;
-    });
-  });
-</script>
 <% title "Queue" %>
 <h1>Queue</h1>
 <p>You are currently in the queue.</p>

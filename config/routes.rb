@@ -9,6 +9,7 @@ Londontrumps::Application.routes.draw do
   # Resourcces
   resources :games
   resources :lobbies
+  resource  :players
 
   # Route everything else by url
   match ':controller/:action'
