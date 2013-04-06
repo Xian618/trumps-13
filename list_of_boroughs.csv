@@ -1,33 +1,33 @@
-name,prefix
-Barking and Dagenham,Barking_and_Dagenham
-Barnet,Barnet
-Bexley,Bexley
-Brent,Brent
-Bromley,Bromley
-Camden,Camden
-City of Westminster,City_of_Westminster
-Croydon,Croydon
-Ealing,Ealing
-Enfield,Enfield
-Greenwich,Greenwich
-Hackney,Hackney
-Hammersmith and Fulham,Hammersmith_and_Fulham
-Haringey,Haringey
-Harrow,Harrow
-Havering,Havering
-Hillingdon,Hillingdon
-Hounslow,Hounslow
-Islington,Islington
-Kensington and Chelsea,Kensington_and_Chelsea
-Kingston upon Thames,Kingston_upon_Thames
-Lambeth,Lambeth
-Lewisham,Lewisham
-Merton,Merton
-Newham,Newham
-Redbridge,Redbridge
-Richmond upon Thames,Richmond_upon_Thames
-Southwark,Southwark
-Sutton,Sutton
-Tower Hamlets,Tower_Hamlets
-Waltham Forest,Waltham_Forest
-Wandsworth,Wandsworth
+name,prefix,pregnancy,salary,publicity,ABH,expulsion,food
+Barking and Dagenham,Barking_and_Dagenham,193,192832,17.30,11.2,14,18
+Barnet,Barnet,153,250818,3.30,4.6,12,23
+Bexley,Bexley,209,258782,2.89,5.7,17,33
+Brent,Brent,171,232646,8.07,9.5,17,29
+Bromley,Bromley,217,202295,2.61,6.0,14,17
+Camden,Camden,107,236869,16.09,8.0,6,14
+City of Westminster,City_of_Westminster,366,248362,5.21,7.8,16,26
+Croydon,Croydon,170,183854,10.03,7.0,6,19
+Ealing,Ealing,235,231604,7.80,5.8,13,25
+Enfield,Enfield,248,224817,13.15,10.5,6,23
+Greenwich,Greenwich,212,203376,8.30,10.5,4,57
+Hackney,Hackney,89,281666,4.85,8.8,11,19
+Hammersmith and Fulham,Hammersmith_and_Fulham,184,236263,15.15,9.0,11,25
+Haringey,Haringey,92,230822,7.80,4.8,17,42
+Harrow,Harrow,194,208326,3.74,5.7,8,24
+Havering,Havering,191,183250,7.43,8.0,11,57
+Hillingdon,Hillingdon,172,201183,4.32,8.1,17,18
+Hounslow,Hounslow,136,223835,10.99,9.8,12,26
+Islington,Islington,48,439071,7.21,5.7,18,29
+Kensington and Chelsea,Kensington_and_Chelsea,71,224000,4.38,6.0,3,25
+Kingston upon Thames,Kingston_upon_Thames,267,246939,4.63,9.7,18,20
+Lambeth,Lambeth,296,230864,8.71,8.8,10,58
+Lewisham,Lewisham,118,212325,6.64,5.9,12,15
+Merton,Merton,226,234783,15.76,11.2,8,26
+Newham,Newham,157,223478,8.11,5.6,4,6
+Redbridge,Redbridge,66,220859,5.18,3.8,6,32
+Richmond upon Thames,Richmond_upon_Thames,254,195510,17.41,10.0,12,32
+Southwark,Southwark,145,112035,8.73,5.6,11,12
+Sutton,Sutton,109,215583,10.93,8.4,6,17
+Tower Hamlets,Tower_Hamlets,195,432213,6.68,8.7,0,34
+Waltham Forest,Waltham_Forest,136,227420,6.40,7.1,19,16
+Wandsworth,Wandsworth,81,232604,13.37,12.0,8,20
