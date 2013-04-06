@@ -61,9 +61,9 @@ class Card < ActiveRecord::Base
   end
 
   def is_better_than(card2, stat_id)
-    card1_stats = @stat_values.split(",")
+    card1_stats = stat_values.split(",")
     card2_stats = card2.stat_values.split(",")
 
-    return (card1_stats[stat_id] > card2_stats[stat_id])
+    return (card1_stats[stat_id.to_i].to_i > card2_stats[stat_id.to_i].to_i)
   end
 end

@@ -31,20 +31,25 @@ class GamesController < ApplicationController
     end
   end
 
-    def build_and_send_turns()
-        Rails.logger.info('BUILDING AND SEDING TURNS')
+    def build_and_send_turns_for_player
         player = Player.find(params[:id])
         game = player.game
         
-        turnP1 = Turn.new(game, 0, 1)
-        turnP1.send_to_player(game.id, game.players[0].id)
-        turnP2 = Turn.new(game, 1, 0)
-        turnP2.send_to_player(game.id, game.players[1].id)
+        send_turns(game)
+        
         render :text => "success", :status => '200'
     end
 
     def render_game
         render :partial => "game_window"
+    end
+    
+    def pick
+        stat = params[:id];
+        game = Game.find(params[:game])
+        game.do_turn(stat)
+        send_turns(game)
+        render :Text => "Success", :status => '200'
     end
 
 private
@@ -91,5 +96,12 @@ private
     }
     return found
   end
+  
+    def send_turns(game)
+        turnP1 = Turn.new(game, 0, 1)
+        turnP1.send_to_player(game.id, game.players[0].id)
+        turnP2 = Turn.new(game, 1, 0)
+        turnP2.send_to_player(game.id, game.players[1].id)
+    end
 end
 

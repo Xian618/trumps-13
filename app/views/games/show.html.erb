@@ -3,13 +3,8 @@
 	<div class="row">
 		<div class="span12">
             <div align="center">
-
                 <h1>Trumps</h1>
-                <h4 id="player_count">Players: 1</h4>
                 <div id="console" class="well"></div>
-                <%= link_to "Switch", {:action => "switch", :id => @game}, :remote => true,
-                 :id => 'button', "data-role" => "button", "data-theme" => "b" %>
-
                 <div class="game-window"></div>
             </div>
         </div>
@@ -37,20 +32,11 @@
             console('Game on!');
             set_players();
             $.ajax({
-              url: '/games/build_and_send_turns?id=<%= session[:player_id].to_s %>'
+              url: '/games/build_and_send_turns_for_player?id=<%= session[:player_id].to_s %>'
             });
         } else {
             console('Waiting for player 2...');
         }
-    });
-    channel.bind('switch', function(data) {
-        var switchButton = $('#button');
-        if (switchButton.attr("data-theme") == 'b') {
-            switchButton.buttonMarkup({theme: 'e'});    
-        } else {
-            switchButton.buttonMarkup({theme: 'b'});
-        }
-            
     });
     
     channel.bind('turn', function(data) {
@@ -91,6 +77,12 @@
                 $('#player1-stat-6').text(card_stats[5]);
               }
         });    
+    }
+
+    function pick(number) {
+        $.ajax({
+            url: '/games/pick?id=' + number + '&game=' + <%= @game.id %> + '&player=' + <%= session[:player_id].to_s %>
+        });
     }
 
     // Helper Functions    
