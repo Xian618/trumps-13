@@ -3,7 +3,7 @@ class Deck < ActiveRecord::Base
   has_many :cards
 
   def self.shuffle_into_decks(stat_type, player1, player2)
-    cards = Card.find_all_by_subtitle(stat_type).shuffle
+    cards = Card.find_all_by_subtitle(stat_type)
     if(cards.size.odd?)
     	cards = cards.first(cards.size - 1)
     end

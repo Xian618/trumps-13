@@ -11,7 +11,7 @@ class Turn
     @opponent_name = game.players[opponent_index].name
   	@player_numcards = game.players[player_index].deck.cards.size
   	@opponent_numcards = game.players[opponent_index].deck.cards.size
-    populate_card_data(game.players[player_index].deck.cards[0])
+    populate_card_data(game.players[player_index].deck.cards.all.first)
 
   	if(player_index == game.whos_turn)
   		player_turn = true
