@@ -8,12 +8,11 @@
     </div>
 
     <div data-role="content">
-        <form action="/lobbies/queue" method="post">
+        <form id="queue" action="/lobbies/queue" method="post">
             <h4>Choose Player Name</h4>
             <input type="text" name="name" placeholder="Player Name">
-            
-            <input data-role="button" type="submit" value="Let's do this!" focus="true">       
         </form>
+        <a href="#" data-role="button" data-theme="b" value="Let's do this!" focus="true" onclick="$('#queue').submit()">Let's do this!</a>      
         <a href="/" data-role="button" data-rel="back"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Cancel</span></span></a>    
     </div>
     
