@@ -3,9 +3,12 @@ class Turn
 
   attr_accessor :player_numcards, :opponent_numcards, :player_turn, 
                   :card_name, :card_subtitle, :card_image_prefix, 
-                  :card_stat_names, :card_stats
+                  :card_stat_names, :card_stats, :player_name,
+                  :opponent_name
 
   def initialize(game, player_index, opponent_index)
+    @player_name = game.players[player_index].name
+    @opponent_name = game.players[opponent_index].name
   	@player_numcards = game.players[player_index].deck.cards.size
   	@opponent_numcards = game.players[opponent_index].deck.cards.size
     populate_card_data(game.players[player_index].deck.cards[0])
