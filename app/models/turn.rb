@@ -26,8 +26,7 @@ class Turn
   end
 
   def send_to_player(game_id, player_id)
-    queue_name = 'presence-'+game_id+'-'+player_id
-    logger.info(queue_name)
+    queue_name = 'presence-'+game_id.to_s+'-'+player_id.to_s
     Pusher.trigger(queue_name, 'turn', to_hash())
   end
 end
