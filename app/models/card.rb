@@ -23,9 +23,9 @@ class Card < ActiveRecord::Base
   end
 
   def create_card_if_new(card)
-    @cards = Card.find_all_by_name_and_subtitle(card.name, card.subtitle)
+    cards = Card.find_all_by_name_and_subtitle(card.name, card.subtitle)
 
-    if (@cards.size > 0) 
+    if (cards.size > 0) 
       logger.info "found existing card"
     else
       card.save
