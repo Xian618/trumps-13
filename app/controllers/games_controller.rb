@@ -24,12 +24,24 @@ class GamesController < ApplicationController
 
   def switch
     if user_is_in_game(params)
-      Pusher.trigger('presence-' + params[:id], 'switch', {some: 'data'})
+      Pusher.trigger('presence-' + params[:id] +'-'+session[:player_id].to_s, 'switch', {some: 'data'})
       render :text => "success", :status => '200'
     else
       render :text => "Forbidden", :status => '403'
     end
   end
+
+    def build_and_send_turns()
+        Rails.logger.info(params[:id])
+        player = Player(params[:id])
+        game = player.game
+        
+        turnP1 = Turn.new(game, 0, 1)
+        turnP1.send_to_player(game.id, game.players[0].id)
+        turnP2 = Turn.new(game, 1, 0)
+        turnP2.send_to_player(game.id, game.players[1].id)
+    end
+
 
 private
   def getdataseturl
@@ -59,15 +71,17 @@ private
   end
 
   def room_not_full(params)
-    room_info = Pusher.get('/channels/presence-'+params[:id], {info: 'user_count'})
+    room_info = Pusher.get('/channels/presence-'+params[:id]+'-'+session[:player_id].to_s, {info: 'user_count'})
     return room_info[:user_count] < 2
   end
 
   def user_is_in_game(params)
     found = false
-    users = Pusher.get('/channels/presence-'+params[:id]+'/users')[:users]
+    users = Pusher.get('/channels/presence-'+params[:id]+'-'+session[:player_id].to_s+'/users')[:users]
+    Rails.logger.info(users)
+    Rails.logger.info(session[:player_id])
     users.each { |user_in_room|
-      if user_in_room.value?(session[:player])
+      if user_in_room.value?(session[:player_id].to_s)
         found = true
       end
     }

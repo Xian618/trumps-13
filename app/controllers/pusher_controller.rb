@@ -14,7 +14,7 @@ class PusherController < ApplicationController
     private
     def authenticate(params)
 	    response = Pusher[params[:channel_name]].authenticate(params[:socket_id], {
-  		    :user_id => session[:player]
+  		    :user_id => session[:player_id]
 	    })
 	    render :json => response
     end

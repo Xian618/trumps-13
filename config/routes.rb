@@ -11,6 +11,7 @@ Londontrumps::Application.routes.draw do
   root :to => 'lobbies#index'
 
   match 'games/switch' => 'games#switch'
+  match 'games/build_and_send_turns' => 'games#build_and_send_turns'
   match 'pusher/auth' => 'pusher#auth'
   match 'lobbies/queue' => 'lobbies#queue'
 
