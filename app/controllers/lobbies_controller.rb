@@ -9,14 +9,14 @@ class LobbiesController < ApplicationController
         queue = ironmq.queue("open_games")
         size = queue.size
         if (size > 0)
-            join_game
             game_to_join = get_game_to_join(queue)
             @game = Game.find(game_to_join)
-            player = Players.new({:name => params(:name)})
+            player = Player.create({:name => params[:name]})
+            session[:player_id] = player.id
             @game.players << player
             redirect_to @game
         else
-            @game = make_new_game_for_player(params(:name))
+            @game = make_new_game_for_player(params[:name])
             queue.post(@game.id.to_s)
             redirect_to @game
         end
@@ -25,7 +25,9 @@ class LobbiesController < ApplicationController
     private
     def make_new_game_for_player(name)
         game = Game.create()
-        player = Players.new({:name => name})
+        player = Player.create({:name => name})
+        session[:player_id] = player.id
+        game.players << player
         return game
     end
 
