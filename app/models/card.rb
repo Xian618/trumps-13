@@ -59,4 +59,11 @@ class Card < ActiveRecord::Base
     stat_values[5] = rand(10)
     card.stat_values = stat_values.join(",")
   end
+
+  def is_better_than(card2, stat_id)
+    card1_stats = @stat_values.split(",")
+    card2_stats = card2.stat_values.split(",")
+
+    return (card1_stats[stat_id] > card2_stats[stat_id])
+  end
 end

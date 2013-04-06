@@ -24,8 +24,8 @@ class Turn
     @card_name = card.name
     @card_subtitle = card.subtitle
     @card_image_prefix = card.image_prefix
-    @card_stat_names = card.stat_names
-    @card_stats = card.stat_values
+    @card_stat_names = card.stat_names.split(",")
+    @card_stats = card.stat_values.split(",")
   end
 
   def send_to_player(game_id, player_id)
