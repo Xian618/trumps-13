@@ -21,15 +21,15 @@ class Game < ActiveRecord::Base
   def do_turn(stat_id)
     player1 = players.all[0]
     player2 = players.all[1]
-    player1_card = player1.deck.cards[0]
-    player2_card = player2.deck.cards[0]
+    player1_card = player1.deck.cards.all.first
+    player2_card = player2.deck.cards.all.first
 
     if(player1_card.is_better_than(player2_card, stat_id))
       whos_turn = 1
-      player1.give_card_to(player2)
+      player2.give_card_to(player1)
     else
       whos_turn = 2
-      player2.give_card_to(player1)
+      player1.give_card_to(player2)
     end
   end
 
