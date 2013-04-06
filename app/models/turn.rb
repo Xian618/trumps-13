@@ -1,14 +1,14 @@
 class Turn
   include AttributeHashHelper
 
-  attr_accessible :player_numcards, :opponent_numcards, :player_turn, 
+  attr_accessor :player_numcards, :opponent_numcards, :player_turn, 
                   :card_name, :card_subtitle, :card_image_prefix, 
                   :card_stat_names, :card_stats
 
   def initialize(game, player_index, opponent_index)
-  	@player_numcards = game.players[player_index].deck.size()
-  	@opponent_numcards = game.players[opponent_index].deck.size()
-    populate_card_data(game.players[player_index].deck[0])
+  	@player_numcards = game.players[player_index].deck.cards.size
+  	@opponent_numcards = game.players[opponent_index].deck.cards.size
+    populate_card_data(game.players[player_index].deck.cards[0])
 
   	if(player_index == game.whos_turn)
   		player_turn = true
@@ -26,6 +26,8 @@ class Turn
   end
 
   def send_to_player(game_id, player_id)
-    Pusher.trigger('presence-'+game_id+'-'+player_id, 'turn', to_hash())
+    queue_name = 'presence-'+game_id+'-'+player_id
+    logger.info(queue_name)
+    Pusher.trigger(queue_name, 'turn', to_hash())
   end
 end

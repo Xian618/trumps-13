@@ -32,8 +32,8 @@ class GamesController < ApplicationController
   end
 
     def build_and_send_turns()
-        Rails.logger.info(params[:id])
-        player = Player(params[:id])
+        Rails.logger.info('BUILDING AND SEDING TURNS')
+        player = Player.find(params[:id])
         game = player.game
         
         turnP1 = Turn.new(game, 0, 1)

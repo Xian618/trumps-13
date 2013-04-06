@@ -33,7 +33,7 @@
     var channel = pusher.subscribe('<%= "presence-" + @game.id.to_s + '-' + session[:player_id].to_s %>');
 
     channel.bind('pusher:subscription_succeeded', function() {
-        if (channel.members.count > 1) {
+        if (<%= @game.players.size > 1 %>) {
             console('Game on!');
             set_players();
             $.ajax({
@@ -52,12 +52,9 @@
         }
             
     });
-    channel.bind('pusher:member_added', function() {
-        set_players();
-        console('Game on!');
-    });
     
     channel.bind('turn', function(data) {
+        alert('lolz');
         var player_numcards = data.player_numcards;
         var opponent_numcards = data.opponent_numcards;
         var player_turn = data.player_turn;
@@ -66,6 +63,8 @@
         var card_image_prefix = data.card_image_prefix;
         var card_stat_names = data.card_stat_names;
         var card_stats = data.card_stats;
+        
+        $('#player_count').innerHTML = "Your turn? " + player_turn;
     });
 
     // Helper Functions    
