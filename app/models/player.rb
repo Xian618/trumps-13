@@ -3,12 +3,20 @@ class Player < ActiveRecord::Base
   has_one :deck
   attr_accessible :name
 
-  def give_card_to(player2)
-    player2_previouscard = player2.deck.cards.all.shift
-    player1_previouscard = deck.cards.all.shift
+  def give_card_to(winner)
+    winner_previouscard = winner.deck.cards.all.shift
+    loser_previouscard = deck.cards.all.shift
 
-  	player2.deck.cards << player2_previouscard
-    player2.deck.cards << player1_previouscard
+    Rails.logger.info(winner_previouscard.name)
+    Rails.logger.info('asiodjasodn')
+    Rails.logger.info(loser_previouscard.name)
+
+  	winner.deck.cards << winner_previouscard
+    winner.deck.cards << loser_previouscard
+    
+    Rails.logger.info(winner.deck.cards.first.name)
+    Rails.logger.info(deck.cards.first.name)
+    
   end
 
 end

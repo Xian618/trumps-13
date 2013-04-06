@@ -99,9 +99,9 @@ private
   
     def send_turns(game)
         turnP1 = Turn.new(game, 0, 1)
-        turnP1.send_to_player(game.id, game.players[0].id)
+        turnP1.send_to_player(game.id, game.players.all[0].id)
         turnP2 = Turn.new(game, 1, 0)
-        turnP2.send_to_player(game.id, game.players[1].id)
+        turnP2.send_to_player(game.id, game.players.all[1].id)
     end
 end
 
