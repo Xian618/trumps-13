@@ -1,4 +1,5 @@
 class Player < ActiveRecord::Base
   belongs_to :game
-  attr_accessible :name, :deck
+  has_one :deck
+  attr_accessible :name
 end

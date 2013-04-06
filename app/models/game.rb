@@ -9,12 +9,12 @@ class Game < ActiveRecord::Base
     deck1 = Deck.new
     deck2 = Deck.new
 
-    Deck.shuffle_into_decks(@stat_type.to_s, deck1, deck2)
+    logger.info(players.size)
 
-    deck1.save
-    deck2.save
+    Deck.shuffle_into_decks(@stat_type.to_s, 
+    						players.all[0],
+    						players.all[1])
 
-    @players[0].deck = deck1
-    @players[1].deck = deck2
+    save
   end
 end
