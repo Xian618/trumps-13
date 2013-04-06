@@ -54,7 +54,10 @@
     });
     
     channel.bind('turn', function(data) {
-        alert('lolz');
+        updatePage(data);        
+    });
+    
+    function updatePage(data) {
         var player_numcards = data.player_numcards;
         var opponent_numcards = data.opponent_numcards;
         var player_turn = data.player_turn;
@@ -63,9 +66,32 @@
         var card_image_prefix = data.card_image_prefix;
         var card_stat_names = data.card_stat_names;
         var card_stats = data.card_stats;
+        var player_name = data.player_name;
+        var opponent_name = data.opponent_name;
         
-        $('#player_count').innerHTML = "Your turn? " + player_turn;
-    });
+        $.ajax({
+              url: '/games/render_game',
+              success: function(response) {
+                $('.game-window').html(response);
+                $('#player1-name').text(player_name + ' - ' +player_numcards + ' cards');
+                $('#player2-name').text(opponent_name + ' - ' +opponent_numcards + ' cards');
+                $('#player1-card-title').text(card_name);
+                $('#player1-card-image').attr('src', '/assets/'+card_image_prefix+'_image.jpg');
+                $('#player1-label-1').text(card_stat_names[0]);
+                $('#player1-label-2').text(card_stat_names[1]);
+                $('#player1-label-3').text(card_stat_names[2]);
+                $('#player1-label-4').text(card_stat_names[3]);
+                $('#player1-label-5').text(card_stat_names[4]);
+                $('#player1-label-6').text(card_stat_names[5]);
+                $('#player1-stat-1').text(card_stats[0]);
+                $('#player1-stat-2').text(card_stats[1]);
+                $('#player1-stat-3').text(card_stats[2]);
+                $('#player1-stat-4').text(card_stats[3]);
+                $('#player1-stat-5').text(card_stats[4]);
+                $('#player1-stat-6').text(card_stats[5]);
+              }
+        });    
+    }
 
     // Helper Functions    
     function set_players() {

@@ -9,7 +9,9 @@ Londontrumps::Application.routes.draw do
 
   # Front page
   root :to => 'lobbies#index'
-
+  
+  
+  match 'games/render_game' => 'games#render_game'
   match 'games/switch' => 'games#switch'
   match 'games/build_and_send_turns' => 'games#build_and_send_turns'
   match 'pusher/auth' => 'pusher#auth'

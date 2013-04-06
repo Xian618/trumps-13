@@ -40,8 +40,12 @@ class GamesController < ApplicationController
         turnP1.send_to_player(game.id, game.players[0].id)
         turnP2 = Turn.new(game, 1, 0)
         turnP2.send_to_player(game.id, game.players[1].id)
+        render :text => "success", :status => '200'
     end
 
+    def render_game
+        render :partial => "game_window"
+    end
 
 private
   def getdataseturl
