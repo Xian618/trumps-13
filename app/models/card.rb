@@ -12,13 +12,13 @@ class Card < ActiveRecord::Base
     csv.each do |row|
       row = row.to_hash.with_indifferent_access
       
-      @card = Card.new
-      @card.name = row['name']
-      @card.image_prefix = row['prefix']
-      @card.subtitle = stat_id.to_s
-      get_stats(stat_id, @card)
+      card = Card.new
+      card.name = row['name']
+      card.image_prefix = row['prefix']
+      card.subtitle = stat_id.to_s
+      get_stats(stat_id, card, row)
 
-      create_card_if_new(@card)
+      create_card_if_new(card)
     end
   end
 
@@ -32,31 +32,31 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def get_stats(stat_id, card)
+  def get_stats(stat_id, card, row)
     if (stat_id == 0)
-    	get_bad_stats(card)
+    	get_bad_stats(card, row)
     else
     	# add more stat types
     end
   end
 
-  def get_bad_stats(card)
+  def get_bad_stats(card, row)
   	names_list = Array.new
   	names_list[0] = "Teenage Pregnancy"
-    names_list[1] = "Local Authority Top Salary"
-  	names_list[2] = "Garbage Rate"
-  	names_list[3] = "Stat Number 4"
-  	names_list[4] = "Stat Number 5"
-  	names_list[5] = "Stat Number 6"
+    names_list[1] = "Chief Salary"
+  	names_list[2] = "Publicity Spending"
+  	names_list[3] = "Rate of ABH"
+  	names_list[4] = "School Exclusions"
+  	names_list[5] = "Food Hygeine"
   	card.stat_names = names_list.join(",")
 
     stat_values = Array.new
-    stat_values[0] = rand(10)
-    stat_values[1] = rand(10)
-    stat_values[2] = rand(10)
-    stat_values[3] = rand(10)
-    stat_values[4] = rand(10)
-    stat_values[5] = rand(10)
+    stat_values[0] = row["pregnancy"]
+    stat_values[1] = row["salary"]
+    stat_values[2] = row["publicity"]
+    stat_values[3] = row["ABH"]
+    stat_values[4] = row["expulsion"]
+    stat_values[5] = row["food"]
     card.stat_values = stat_values.join(",")
   end
 
