@@ -2,6 +2,10 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
+
+    @card = Card.new
+    @card.build_deck(0)
+
     @cards = Card.all
 
     respond_to do |format|
@@ -79,5 +83,9 @@ class CardsController < ApplicationController
       format.html { redirect_to cards_url }
       format.json { head :no_content }
     end
+  end
+
+  def deck
+
   end
 end

@@ -1,0 +1,2 @@
+module CardGeneratorHelper
+end
