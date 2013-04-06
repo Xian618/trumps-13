@@ -14,6 +14,7 @@ class LobbiesController < ApplicationController
             player = Player.create({:name => params[:name]})
             session[:player_id] = player.id
             @game.players << player
+            @game.save
             @game.build_game_objects
             redirect_to @game
         else

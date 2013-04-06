@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
     deck1.save
     deck2.save
 
-    players[0].deck = deck1
-    players[1].deck = deck2
+    @players[0].deck = deck1
+    @players[1].deck = deck2
   end
 end
